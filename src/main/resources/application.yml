@@ -1,0 +1,23 @@
+server:
+  port: 8081 # 端口号
+spring:
+  profiles:
+    active: dev
+  main:
+    allow-circular-references: true # 循环引用
+  datasource:
+    driver-class-name: ${oabs.datasource.driver-class-name}
+    url: jdbc:mysql://${oabs.datasource.host}:${oabs.datasource.port}/${oabs.datasource.database}?serverTimezone=Asia/Shanghai&useUnicode=true&characterEncoding=utf-8&zeroDateTimeBehavior=convertToNull&useSSL=false&allowPublicKeyRetrieval=true
+    username: ${oabs.datasource.username}
+    password: ${oabs.datasource.password}
+mybatis:
+  mapper-locations: classpath:mapper/*.xml # 映射文件
+  type-aliases-package: com.ye.entity
+  configuration:
+    map-underscore-to-camel-case: true # 下划线转驼峰
+logging: # 日志级别
+  level:
+    com.onlineaddressbooksystem:
+      mapper: debug
+      service: info
+      controller: info
